@@ -18,15 +18,42 @@
 //
 // Create a card for each of the articles and add the card to the DOM.
 
+const cardsContainer = document.querySelector('.cards-container')
+
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
     .then(data => {
         console.log('API data for articles succesfully retrieved:', data)
+        const extractArticles = data.data.articles
+        extractArticles.bootstrap.forEach(article => {
+            cardsContainer.appendChild(createCard(article))
+        })
+        extractArticles.javascript.forEach(article => {
+            cardsContainer.appendChild(createCard(article))
+        })
+        extractArticles.jquery.forEach(article => {
+            cardsContainer.appendChild(createCard(article))
+        })
+        extractArticles.node.forEach(article => {
+            cardsContainer.appendChild(createCard(article))
+        })
+        extractArticles.technology.forEach(article => {
+            cardsContainer.appendChild(createCard(article))
+        })
+
+        // @@@@@ Nested forEach (something to look at for a later stretch)
+        // extractArticles.forEach(topicHeader => {
+        //     console.log(topicHeader)
+        //     topicHeader.forEach(article => {
+        //         console.log(article)
+        //         cardsContainer.appendChild(createCard(article))
+        //     })
+        // })
     })
     .catch(error => {
         console.log('API for articles currently down:', error)
     })
 
-function createCard() {
+function createCard(dataObj) {
     // Create elements
     const card = document.createElement('div')
     const headline = document.createElement('div')
@@ -43,6 +70,9 @@ function createCard() {
     imgContainer.appendChild(img)
 
     // Set attributes
+    headline.textContent = dataObj.headline
+    img.src = `${dataObj.authorPhoto}`
+    authorName.textContent = `By ${dataObj.authorName}`
 
     // Set classes
     card.classList.add('card')
