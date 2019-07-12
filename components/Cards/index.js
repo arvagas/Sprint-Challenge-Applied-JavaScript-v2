@@ -20,8 +20,35 @@
 
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
     .then(data => {
-        console.log('API data succesfully retrieved:', data)
+        console.log('API data for articles succesfully retrieved:', data)
     })
     .catch(error => {
-        console.log('API currently down:', error)
+        console.log('API for articles currently down:', error)
     })
+
+function createCard() {
+    // Create elements
+    const card = document.createElement('div')
+    const headline = document.createElement('div')
+    const author = document.createElement('div')
+    const imgContainer = document.createElement('div')
+    const img = document.createElement('img')
+    const authorName = document.createElement('span')
+
+    // Structure elements
+    card.appendChild(headline)
+    card.appendChild(author)
+    author.appendChild(imgContainer)
+    author.appendChild(authorName)
+    imgContainer.appendChild(img)
+
+    // Set attributes
+
+    // Set classes
+    card.classList.add('card')
+    headline.classList.add('headline')
+    author.classList.add('author')
+    imgContainer.classList.add('img-container')
+
+    return card
+}
