@@ -12,14 +12,14 @@ const topicsBar = document.querySelector('.topics')
 
 axios.get('https://lambda-times-backend.herokuapp.com/topics')
     .then(data => {
-        console.log('API data succesfully retrieved', data)
+        console.log('API data for topics succesfully retrieved:', data)
         const extractTopics = data.data.topics
         extractTopics.forEach(topic => {
             topicsBar.appendChild(topicTabs(topic))
         })
     })
     .catch(error => {
-        console.log('API currently down', error)
+        console.log('API for topics currently down:', error)
     })
 
 function topicTabs(name) {
@@ -27,7 +27,8 @@ function topicTabs(name) {
     const tab = document.createElement('div')
 
     // Set attribute
-    tab.textContent = `${name}`
+    tab.textContent = name
+    tab.dataset.tab = name
 
     // Set classe
     tab.classList.add('tab')
