@@ -24,9 +24,9 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
     .then(data => {
         console.log('API data for articles succesfully retrieved:', data)
         const extractArticles = data.data.articles
-        for (let topics in extractArticles) {
-            extractArticles[topics].forEach(topic => {
-                cardsContainer.appendChild(createCard(topic))
+        for (let topic in extractArticles) {
+            extractArticles[topic].forEach(topicArticle => {
+                cardsContainer.appendChild(createCard(topic, topicArticle))
             })
         }
     })
@@ -34,7 +34,7 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
         console.log('API for articles currently down:', error)
     })
 
-function createCard(dataObj) {
+function createCard(category, article) {
     // Create elements
     const card = document.createElement('div')
     const headline = document.createElement('div')
@@ -51,9 +51,10 @@ function createCard(dataObj) {
     imgContainer.appendChild(img)
 
     // Set attributes
-    headline.textContent = dataObj.headline
-    img.src = `${dataObj.authorPhoto}`
-    authorName.textContent = `By ${dataObj.authorName}`
+    card.dataset.tab = category
+    headline.textContent = article.headline
+    img.src = `${article.authorPhoto}`
+    authorName.textContent = `By ${article.authorName}`
 
     // Set classes
     card.classList.add('card')
