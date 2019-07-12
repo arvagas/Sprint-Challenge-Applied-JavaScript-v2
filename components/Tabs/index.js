@@ -30,8 +30,27 @@ function topicTabs(name) {
     tab.textContent = name
     tab.dataset.tab = name
 
-    // Set classe
+    // Set classes
     tab.classList.add('tab')
 
+    // Button event
+    tab.addEventListener('click', () => selectTab(tab))
+
     return tab
+}
+
+function selectTab(clickedTab) {
+    const tabs = document.querySelectorAll('.tab')
+    const cards = document.querySelectorAll('.card')
+
+    tabs.forEach(tab => tab.classList.remove('active-tab'))
+
+    cards.forEach(card => card.style.display='none')
+
+    clickedTab.classList.add('active-tab')
+
+    cards.forEach(card => {
+        if (card.dataset.tab === clickedTab.dataset.tab) card.style.display = 'block'
+        // node.js will not have any cards because the article and topic api list them differently (topic[node.js] & article[node])
+    })
 }
