@@ -52,37 +52,51 @@ function createCarousel() {
   rightBtn.classList.add('right-button')
 
   // Button events
+  const imgArray = [imgOne,imgTwo,imgThree,imgFour]
+
   rightBtn.addEventListener('click', () => {
-    if (imgOne.classList.contains('img-reveal')) {
-      imgOne.classList.toggle('img-reveal')
-      imgTwo.classList.toggle('img-reveal')
-    } else if (imgTwo.classList.contains('img-reveal')) {
-      imgTwo.classList.toggle('img-reveal')
-      imgThree.classList.toggle('img-reveal')
-    } else if (imgThree.classList.contains('img-reveal')) {
-      imgThree.classList.toggle('img-reveal')
-      imgFour.classList.toggle('img-reveal')
-    } else if (imgFour.classList.contains('img-reveal')) {
-      imgFour.classList.toggle('img-reveal')
-      imgOne.classList.toggle('img-reveal')
+    if (imgArray[0].classList.contains('img-reveal')) {
+      imgArray[0].classList.toggle('img-reveal')
+      imgArray[1].classList.toggle('img-reveal')
+      imgArray.push(imgArray.shift())
     }
+
+    // if (imgOne.classList.contains('img-reveal')) {
+    //   imgOne.classList.toggle('img-reveal')
+    //   imgTwo.classList.toggle('img-reveal')
+    // } else if (imgTwo.classList.contains('img-reveal')) {
+    //   imgTwo.classList.toggle('img-reveal')
+    //   imgThree.classList.toggle('img-reveal')
+    // } else if (imgThree.classList.contains('img-reveal')) {
+    //   imgThree.classList.toggle('img-reveal')
+    //   imgFour.classList.toggle('img-reveal')
+    // } else if (imgFour.classList.contains('img-reveal')) {
+    //   imgFour.classList.toggle('img-reveal')
+    //   imgOne.classList.toggle('img-reveal')
+    // }
   })
 
   leftBtn.addEventListener('click', () => {
-    if (imgOne.classList.contains('img-reveal')) {
-      imgOne.classList.toggle('img-reveal')
-      imgFour.classList.toggle('img-reveal')
-    } else if (imgFour.classList.contains('img-reveal')) {
-      imgFour.classList.toggle('img-reveal')
-      imgThree.classList.toggle('img-reveal')
-    } else if (imgThree.classList.contains('img-reveal')) {
-      imgThree.classList.toggle('img-reveal')
-      imgTwo.classList.toggle('img-reveal')
-    } else if (imgTwo.classList.contains('img-reveal')) {
-      imgTwo.classList.toggle('img-reveal')
-      imgOne.classList.toggle('img-reveal')
+    if (imgArray[0].classList.contains('img-reveal')) {
+      imgArray[0].classList.toggle('img-reveal')
+      imgArray[imgArray.length-1].classList.toggle('img-reveal')
+      imgArray.unshift(imgArray.pop())
     }
+
+  //   if (imgOne.classList.contains('img-reveal')) {
+  //     imgOne.classList.toggle('img-reveal')
+  //     imgFour.classList.toggle('img-reveal')
+  //   } else if (imgFour.classList.contains('img-reveal')) {
+  //     imgFour.classList.toggle('img-reveal')
+  //     imgThree.classList.toggle('img-reveal')
+  //   } else if (imgThree.classList.contains('img-reveal')) {
+  //     imgThree.classList.toggle('img-reveal')
+  //     imgTwo.classList.toggle('img-reveal')
+  //   } else if (imgTwo.classList.contains('img-reveal')) {
+  //     imgTwo.classList.toggle('img-reveal')
+  //     imgOne.classList.toggle('img-reveal')
+  //   }
   })
-  
+
   return carousel
 }

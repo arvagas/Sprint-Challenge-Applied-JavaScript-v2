@@ -35,10 +35,23 @@
     transform: translate(0, -50%);
   }
   img {
-    .width-100();
-    display: none;
+    // .width-100();
+    // display: none;
+    width: 0;
+    
   }
   .img-reveal {
-    display: block;
+    // display: block;
+    animation: slideAnim 1s;
+    width: 100%;
+    // transition: all 1s linear;
   }
+  .img-reveal-right {
+    width: 100%;
+  }
+}
+
+@keyframes slideAnim {
+  from {width: 0;}
+  to {width: 1200px;}
 }
