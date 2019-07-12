@@ -24,30 +24,11 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
     .then(data => {
         console.log('API data for articles succesfully retrieved:', data)
         const extractArticles = data.data.articles
-        extractArticles.bootstrap.forEach(article => {
-            cardsContainer.appendChild(createCard(article))
-        })
-        extractArticles.javascript.forEach(article => {
-            cardsContainer.appendChild(createCard(article))
-        })
-        extractArticles.jquery.forEach(article => {
-            cardsContainer.appendChild(createCard(article))
-        })
-        extractArticles.node.forEach(article => {
-            cardsContainer.appendChild(createCard(article))
-        })
-        extractArticles.technology.forEach(article => {
-            cardsContainer.appendChild(createCard(article))
-        })
-
-        // @@@@@ Nested forEach (something to look at for a later stretch)
-        // extractArticles.forEach(topicHeader => {
-        //     console.log(topicHeader)
-        //     topicHeader.forEach(article => {
-        //         console.log(article)
-        //         cardsContainer.appendChild(createCard(article))
-        //     })
-        // })
+        for (let topics in extractArticles) {
+            extractArticles[topics].forEach(topic => {
+                cardsContainer.appendChild(createCard(topic))
+            })
+        }
     })
     .catch(error => {
         console.log('API for articles currently down:', error)
