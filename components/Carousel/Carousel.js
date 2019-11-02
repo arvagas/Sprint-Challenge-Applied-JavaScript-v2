@@ -17,3 +17,86 @@
     <div class="right-button"> > </div>
   </div>
 */
+document.querySelector('.carousel-container').appendChild(createCarousel())
+
+function createCarousel() {
+  // Create elements
+  const carousel = document.createElement('div')
+  const leftBtn = document.createElement('div')
+  const imgOne = document.createElement('img')
+  const imgTwo = document.createElement('img')
+  const imgThree = document.createElement('img')
+  const imgFour = document.createElement('img')
+  const rightBtn = document.createElement('div')
+
+  // Structure elements
+  carousel.appendChild(leftBtn)
+  carousel.appendChild(imgOne)
+  carousel.appendChild(imgTwo)
+  carousel.appendChild(imgThree)
+  carousel.appendChild(imgFour)
+  carousel.appendChild(rightBtn)
+
+  // Set attributes
+  leftBtn.textContent = '<'
+  imgOne.src = './assets/carousel/mountains.jpeg'
+  imgTwo.src = './assets/carousel/computer.jpeg'
+  imgThree.src = './assets/carousel/trees.jpeg'
+  imgFour.src = './assets/carousel/turntable.jpeg'
+  rightBtn.textContent = '>'
+
+  // Set classes
+  carousel.classList.add('carousel')
+  leftBtn.classList.add('left-button')
+  imgOne.classList.add('img-reveal')
+  rightBtn.classList.add('right-button')
+
+  // Button events
+  const imgArray = [imgOne,imgTwo,imgThree,imgFour]
+
+  rightBtn.addEventListener('click', () => {
+    if (imgArray[0].classList.contains('img-reveal')) {
+      imgArray[0].classList.toggle('img-reveal')
+      imgArray[1].classList.toggle('img-reveal')
+      imgArray.push(imgArray.shift())
+    }
+
+    // if (imgOne.classList.contains('img-reveal')) {
+    //   imgOne.classList.toggle('img-reveal')
+    //   imgTwo.classList.toggle('img-reveal')
+    // } else if (imgTwo.classList.contains('img-reveal')) {
+    //   imgTwo.classList.toggle('img-reveal')
+    //   imgThree.classList.toggle('img-reveal')
+    // } else if (imgThree.classList.contains('img-reveal')) {
+    //   imgThree.classList.toggle('img-reveal')
+    //   imgFour.classList.toggle('img-reveal')
+    // } else if (imgFour.classList.contains('img-reveal')) {
+    //   imgFour.classList.toggle('img-reveal')
+    //   imgOne.classList.toggle('img-reveal')
+    // }
+  })
+
+  leftBtn.addEventListener('click', () => {
+    if (imgArray[0].classList.contains('img-reveal')) {
+      imgArray[0].classList.toggle('img-reveal')
+      imgArray[imgArray.length-1].classList.toggle('img-reveal')
+      imgArray.unshift(imgArray.pop())
+    }
+
+  //   if (imgOne.classList.contains('img-reveal')) {
+  //     imgOne.classList.toggle('img-reveal')
+  //     imgFour.classList.toggle('img-reveal')
+  //   } else if (imgFour.classList.contains('img-reveal')) {
+  //     imgFour.classList.toggle('img-reveal')
+  //     imgThree.classList.toggle('img-reveal')
+  //   } else if (imgThree.classList.contains('img-reveal')) {
+  //     imgThree.classList.toggle('img-reveal')
+  //     imgTwo.classList.toggle('img-reveal')
+  //   } else if (imgTwo.classList.contains('img-reveal')) {
+  //     imgTwo.classList.toggle('img-reveal')
+  //     imgOne.classList.toggle('img-reveal')
+  //   }
+  })
+
+  return carousel
+}
